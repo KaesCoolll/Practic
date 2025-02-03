@@ -89,6 +89,11 @@ console.log(containsAllLetters(['Hello World', 'ow'])); // true
 console.log(chunkArray([1, 2, 3, 4, 5], 2)); // [[1, 2], [3, 4], [5]]
 console.log(fillArray(5)); // [5, 4, 3, 2, 1]
 
+
+
+// РЕАЛИЗАЦИИИИ ФУНКЦИЙ !!!
+
+
 // 1. Реализация функции map
 function myMap(array, callback) {
     const result = [];
@@ -138,5 +143,131 @@ function myEvery(array, callback) {
     }
     return true;
 }
-// Юнити тесты
 
+
+// 3 скрин 
+
+//1
+function masplus(arr) {
+    const min = Math.min(...arr)
+    const max = Math.max(...arr)
+    let mathAll = 0
+    for (let i = min; i <= max; i++) {
+            mathAll += 1;
+    }
+    return mathAll
+}
+
+//2
+
+function elemuniq(arr1, arr2) {
+    const uniquearr1 = arr1.filter(elem => arr2.includes(elem))
+    const uniquearr2 = arr2.filter(elem => arr1.includes(elem))
+    return [...uniquearr1, ...uniquearr2]
+}
+
+//3
+function reElem(arr, args) {
+    return arr.filter(elem => args.includes(elem));
+}
+
+//4
+function searchName(collection, source) {
+    return collection.filter(obj => {
+        return keys.every(key => obj[key] === source[key]);
+    });
+}
+
+//6
+function reWord(sentence, target, replacement) {
+    const regex = new RegExp(target, 'gi');
+    return sentence.replace(regex, (match) => {
+        const Cap = match.charAt(0) === match.charAt(0).toUpperCase();
+        if (Cap) {
+            return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+        } else {
+            return replacement.toLowerCase();
+        }
+    });
+}
+
+// 5
+function spinalCase(str) {
+    return str.split(/\s|_|(?=[A-Z])/).join('-').toLowerCase();
+}
+
+//7
+function fearNotLetter(str) {
+    const charArr = str.split('');
+    const CharS = str.charCodeAt(0);
+    const CharE = str.charCodeAt(str.length - 1);
+    for (let i = CharS; i <= CharE; i++) {
+        if (charArr.includes(String.fromCharCode(i))) {
+            return String.fromCharCode(i);
+        }
+    }
+    return undefined;
+}
+
+// 8. 
+function uniteUnique(...arrays) {
+    return [...new Set([].concat(...arrays))];
+}
+
+//9
+function Html(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+//10
+function sum(n) {
+    let sum = 0
+    for (let num = 2; num < n; num++) {
+        let x = true;
+        for (let i = 2; i*i <= num; i++) {
+            if (num % i === 0) {
+                x = false;
+                break;
+            }
+        }
+        if(x) {
+            sum += num;
+        }
+    }
+    return sum;
+}
+
+//11
+function dropElem(arr, func) {
+    while (arr.length > 0 && func(arr[0])) {
+        arr.shift(); 
+    }
+    return arr; 
+}
+
+//12
+function masredaction(arr1) {
+    const res = []
+    function edit(arr2) {
+        for (let item of arr2) {
+            if (Array.isArray(item)) {
+                edit(item);
+            }
+            else {
+                res.push(item);
+            }
+        }
+    }
+    edit(arr1);
+    return res;
+}
+
+//13
+function add(a) {
+    if (arguments.length === 1) {
+        return function(b) {
+            return a + b;
+        };
+    }
+    return a + arguments[1];
+}
